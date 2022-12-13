@@ -1,4 +1,8 @@
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class BatalhaNaval {
 
@@ -25,7 +29,7 @@ public class BatalhaNaval {
                 if(posicaoNavio == j) {
                     tabuleiro[i][j] = " N ";
                 } else {
-                    tabuleiro[i][j] = " ~ ";
+                    tabuleiro[i][j] = "   ";
                 }
             }
         }
@@ -45,12 +49,64 @@ public class BatalhaNaval {
         }
     }
 
+    public static Point escolherPosicaoAtaque() {
+        Scanner input = new Scanner(System.in);
+        Point posicao = new Point();
+        List<String> values = List.of("A", "B", "C", "D", "E", "F", "G", "H", "I", "J");
+
+        System.out.println("Escolha uma posição para atacar o oponente:");
+        System.out.println("Linha (A-J): ");
+        String linhaLetra = input.next();
+        System.out.println("Coluna (0-9): ");
+        int coluna = input.nextInt();
+        int linha = values.indexOf(linhaLetra);
+
+        linha++;
+        coluna++;
+        posicao.x = linha;
+        posicao.y = coluna;
+
+        return posicao;
+    }
+
+    public static String[][] atacar(String[][] tabuleiro, Point posicao) {
+
+        if (tabuleiro[posicao.x][posicao.y].equals("   ")) {
+            tabuleiro[posicao.x][posicao.y] = " - ";
+        } else if (tabuleiro[posicao.x][posicao.y].equals(" N ")) {
+            tabuleiro[posicao.x][posicao.y] = " * ";
+        }
+
+        return tabuleiro;
+    }
+
     public static void main(String[] args) {
+
+        List<Point> jogadasPC = new ArrayList<>();
+        List<Point> jogadasPessoa = new ArrayList<>();
+        Point posicao = new Point();
         System.out.println();
         System.out.println("---------------------------------------------");
         System.out.println("                " + "BATALHA NAVAL");
-        String[][] tabuleiro = inicializarTabuleiro();
-        mostrarTabuleiro(tabuleiro);
+        String[][] tabuleiroPessoa = inicializarTabuleiro();
+        String[][] tabuleiroPC = inicializarTabuleiro();
 
+
+        while (true){ // melhorar condição
+            // falta mesclar os tabuleiros
+
+            mostrarTabuleiro(tabuleiroPessoa);
+            posicao = escolherPosicaoAtaque(); // posição escolhida pelo jogador pessoa
+            System.out.println(posicao);
+            tabuleiroPC = atacar(tabuleiroPC, posicao);
+
+            mostrarTabuleiro(tabuleiroPessoa);
+            posicao = escolherPosicaoAtaque(); // posição deve ser escolhida aleatoriamente pelo jogador PC
+            System.out.println(posicao);
+            tabuleiroPessoa = atacar(tabuleiroPessoa, posicao);
+        }
     }
 }
+
+// tabuleiro tem função armazenar navios, imprimir tabuleiro... - construir classe chamada tabuliero
+// objeto tabuleiro pra pessoa e objeto tabuleiro para o computador
