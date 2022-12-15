@@ -15,8 +15,8 @@ public class Display {
                 System.out.print("|");
                 System.out.print(tabuleiro.getTabuleiro()[i][j]);
             }
-            System.out.print("|");
-            System.out.println("\n---------------------------------------------");
+            System.out.print("|\n");
+            System.out.println("---------------------------------------------");
         }
     }
 }
