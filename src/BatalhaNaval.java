@@ -1,6 +1,4 @@
-import jogador.JogadorHumano;
-import jogador.JogadorPC;
-import tabuleiro.Posicao;
+
 import tabuleiro.Tabuleiro;
 import utils.Display;
 import utils.Input;
