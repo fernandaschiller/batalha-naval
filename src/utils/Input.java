@@ -21,39 +21,34 @@ public class Input {
                 linha = posicaoAtaque.charAt(0);
                 coluna = posicaoAtaque.charAt(1);
 
-                System.out.println(linha);
-                System.out.println("++++++++++++++++++++++++++++++++");
-                System.out.println(coluna);
-
                 if ((valuesUpperCase.contains(String.valueOf(linha)) || valuesLowerCase.contains(String.valueOf(linha))) && Character.isAlphabetic(linha)) {
                     if (valuesUpperCase.contains(String.valueOf(linha)))
                         posicao = posicao + valuesUpperCase.indexOf(linha);
                     if (valuesLowerCase.contains(String.valueOf(linha)))
                         posicao = posicao + valuesLowerCase.indexOf(linha);
                 } else  {
-                    System.out.println("PRIMEIRO IF");
+                    System.out.println("Primeiro Caractere não é de A-J...");
                     throw new Exception();
                 }
 
                 if (Character.isDigit(coluna)) {
                     posicao = posicao + coluna;
                 } else {
-                    System.out.println("SEGUNDO IF");
+                    System.out.println("Segundo Caractere não é numérico...");
                     throw new Exception();
                 }
                 if(!jogadasRealizadas.contains(posicao)){
                     return posicao;
                 } else {
-                    System.out.println("Posição já escolhida anteriormente...");
+                    System.out.println("Posição já utilizada anteriormente...");
                     throw new Exception();
                 }
 
             } else {
-                System.out.println("TERCEIRO IF");
+                System.out.println("Entrada Inválida. Deve serguir o padrão A5, B9 ou J4, por exemplo...");
                 throw new Exception();
             }
         } catch(Exception e) {
-            System.out.println("Posição Inválida...");
             escolherPosicaoAtaque(jogadasRealizadas);
         }
         return "";
