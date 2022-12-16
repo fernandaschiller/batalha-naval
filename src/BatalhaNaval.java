@@ -31,9 +31,11 @@ public class BatalhaNaval {
 
             //jogador humano é quem começa escolhendo a posição de ataque
             posicao = entrada.escolherPosicaoAtaque(jogadasHumano);
-            jogadasHumano.add(posicao);
 
-            System.out.println("Humano ------>" + posicao);
+            //para fazer PC vs PC, descomentar a linha de baixo e comentar a de cima
+            //posicao = entrada.gerarAleatoriamentePosicaoAtaque(jogadasHumano);
+
+            jogadasHumano.add(posicao);
 
             //ataque do humano no tabuleiro do PC
             tabuleiroPC = jogadorHumano.atacar(tabuleiroPC, posicao);
@@ -47,8 +49,6 @@ public class BatalhaNaval {
             //vez do PC jogar
             posicao = entrada.gerarAleatoriamentePosicaoAtaque(jogadasPC);
             jogadasPC.add(posicao);
-
-            System.out.println("PC ------>" + posicao);
 
             //ataque do PC no tabuleiro do humano
             tabuleiroHumano=jogadorPC.atacar(tabuleiroHumano, posicao);
