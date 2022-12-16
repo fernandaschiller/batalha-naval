@@ -49,9 +49,8 @@ public class Input {
                 throw new Exception();
             }
         } catch(Exception e) {
-            escolherPosicaoAtaque(jogadasRealizadas);
+            return escolherPosicaoAtaque(jogadasRealizadas);
         }
-        return "";
     }
 
     public static String gerarAleatoriamentePosicaoAtaque(List jogadasRealizadas) throws Exception {
