@@ -65,8 +65,7 @@ public class Input {
                 throw new Exception();
             }
         } catch (Exception e) {
-            gerarAleatoriamentePosicaoAtaque(jogadasRealizadas);
+            return gerarAleatoriamentePosicaoAtaque(jogadasRealizadas);
         }
-        return "";
     }
 }
