@@ -17,11 +17,13 @@ public class BatalhaNaval {
         Display display = new Display();
         String posicao;
         Input entrada = new Input();
+        boolean ganhadorPC = false;
+        boolean ganhadorHumano = false;
 
         System.out.println("\n---------------------------------------------");
         System.out.println("|               " + "BATALHA NAVAL               |");
 
-        while (true){ // falta verificar quando alguém ganha
+        while (!ganhadorHumano && !ganhadorPC){
             //falta mesclar os tabuleiros
 
             //Mostrar o tabuleiro do jogador humano
@@ -36,6 +38,12 @@ public class BatalhaNaval {
             //ataque do humano no tabuleiro do PC
             tabuleiroPC = jogadorHumano.atacar(tabuleiroPC, posicao);
 
+            //verificar se o jogador humano é ganhador
+            ganhadorHumano = jogadorHumano.verificarGanhador(tabuleiroPC);
+            if (ganhadorHumano){
+                break;
+            }
+
             //vez do PC jogar
             posicao = entrada.gerarAleatoriamentePosicaoAtaque(jogadasPC);
             jogadasPC.add(posicao);
@@ -45,11 +53,21 @@ public class BatalhaNaval {
             //ataque do PC no tabuleiro do humano
             tabuleiroHumano=jogadorPC.atacar(tabuleiroHumano, posicao);
 
+            //verificar se o jogador PC é ganhador
+            ganhadorPC = jogadorPC.verificarGanhador(tabuleiroHumano);
+            if (ganhadorPC){
+                break;
+            }
         }
-//        System.out.println("Tabuleiro Jogador Humano");
-//        display.imprimirTabuleiro(tabuleiroHumano);
-//        System.out.println("Tabuleiro PC");
-//        display.imprimirTabuleiro(tabuleiroPC);
-//        System.out.println("FIM DA BATALHA...");
+        if (ganhadorHumano){
+            System.out.println("Jogador Humano Venceu!! :D");
+        } else {
+            System.out.println("Jogador PC Venceu.. :'(");
+        }
+        System.out.println("Tabuleiro Jogador Humano");
+        display.imprimirTabuleiro(tabuleiroHumano);
+        System.out.println("Tabuleiro PC");
+        display.imprimirTabuleiro(tabuleiroPC);
+        System.out.println("FIM DA BATALHA...");
     }
 }

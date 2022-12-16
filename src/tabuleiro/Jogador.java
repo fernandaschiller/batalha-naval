@@ -9,4 +9,19 @@ public class Jogador {
         }
         return tabuleiro;
     }
+
+    public static boolean verificarGanhador(Tabuleiro tabuleiro){
+        int contadorAcertos = 0;
+
+        for(int i = 0; i < tabuleiro.TAMANHO_TABULEIRO; i++){
+            for(int j = 0; j < tabuleiro.TAMANHO_TABULEIRO; j++){
+                contadorAcertos++;
+            }
+        }
+
+        if(contadorAcertos==tabuleiro.TAMANHO_TABULEIRO){
+            return true;
+        }
+        return false;
+    }
 }
