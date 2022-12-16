@@ -15,7 +15,8 @@ public class Input {
     public static String escolherPosicaoAtaque() {
         Scanner input = new Scanner(System.in);
         String posicao = new String();
-        String values = "ABCDEFGHIJ";
+        String valuesUpperCase = "ABCDEFGHIJ";
+        String valuesLowerCase = "abcdefghij";
 
         System.out.println("Escolha uma posição para atacar (Ex: A0 ou J7):");
 
@@ -26,8 +27,9 @@ public class Input {
                 char linha = posicaoAtaque.charAt(0);
                 char coluna = posicaoAtaque.charAt(1);
 
-                if (values.contains(String.valueOf(Character.toUpperCase(linha))) && Character.isAlphabetic(linha)) {
-                    posicao = posicao + values.indexOf(linha);
+                if ((valuesUpperCase.contains(String.valueOf(linha)) || valuesLowerCase.contains(String.valueOf(linha))) && Character.isAlphabetic(linha)) {
+                    if (valuesUpperCase.contains(String.valueOf(linha))) posicao = posicao + valuesUpperCase.indexOf(linha);
+                    if (valuesLowerCase.contains(String.valueOf(linha))) posicao = posicao + valuesLowerCase.indexOf(linha);
                 } else  {
                     System.out.println("PRIMEIRO IF");
                     throw new Exception();

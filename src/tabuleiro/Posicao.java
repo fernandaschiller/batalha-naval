@@ -92,13 +92,20 @@ public class Posicao {
 
     @Override
     public String toString() {
-        if (isAgua()) return StatusPosicao.AGUA.getSimboloPosicao();
-        if (isNavio()) return StatusPosicao.NAVIO.getSimboloPosicao();
+        if (isAgua() && !isTiroAgua()) return StatusPosicao.AGUA.getSimboloPosicao();
+        else if (isNavio() && !isTiroCerteiro()) return StatusPosicao.NAVIO.getSimboloPosicao();
         else if (isNavio() && isTiroCerteiro()) return StatusPosicao.TIRO_CERTEIRO.getSimboloPosicao();
-        else if (isNavio() && isTiroAgua()) return StatusPosicao.TIRO_AGUA.getSimboloPosicao();
+        else if (isAgua() && isTiroAgua()) return StatusPosicao.TIRO_AGUA.getSimboloPosicao();
         else if (isNavio() && isTiroCerteiroComNavio()) return StatusPosicao.TIRO_CERTEIRO_COM_NAVIO.getSimboloPosicao();
         else if (isNavio() && isTiroAguaComNavio()) return StatusPosicao.TIRO_AGUA_COM_NAVIO.getSimboloPosicao();
         else return StatusPosicao.AGUA.getSimboloPosicao();
+//        if (isAgua()) return StatusPosicao.AGUA.getSimboloPosicao();
+//        if (isNavio()) return StatusPosicao.NAVIO.getSimboloPosicao();
+//        else if (isNavio() && isTiroCerteiro()) return StatusPosicao.TIRO_CERTEIRO.getSimboloPosicao();
+//        else if (isNavio() && isTiroAgua()) return StatusPosicao.TIRO_AGUA.getSimboloPosicao();
+//        else if (isNavio() && isTiroCerteiroComNavio()) return StatusPosicao.TIRO_CERTEIRO_COM_NAVIO.getSimboloPosicao();
+//        else if (isNavio() && isTiroAguaComNavio()) return StatusPosicao.TIRO_AGUA_COM_NAVIO.getSimboloPosicao();
+//        else return StatusPosicao.AGUA.getSimboloPosicao();
     }
 }
 
