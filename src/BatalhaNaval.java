@@ -7,13 +7,13 @@ import java.awt.*;
 
 
 public class BatalhaNaval {
-    public static Tabuleiro atacar(Tabuleiro tabuleiro, String posicao) {
-        if(tabuleiro.getTabuleiro()[posicao.charAt(0)-'0'][posicao.charAt(1)-'0'].isAgua()) {
-            tabuleiro.getTabuleiro()[posicao.charAt(0)-'0'][posicao.charAt(1)-'0'].setTiroAgua();
-        } else if (tabuleiro.getTabuleiro()[posicao.charAt(0)-'0'][posicao.charAt(1)-'0'].isNavio()){
-            tabuleiro.getTabuleiro()[posicao.charAt(0)-'0'][posicao.charAt(1)-'0'].setTiroCerteiro();
+    public static Tabuleiro atacar(Tabuleiro tabuleiro1, Tabuleiro tabuleiro2, String posicao) {
+        if(tabuleiro1.getTabuleiro()[posicao.charAt(0)-'0'][posicao.charAt(1)-'0'].isAgua()) {
+            tabuleiro2.getTabuleiro()[posicao.charAt(0)-'0'][posicao.charAt(1)-'0'].setTiroAgua();
+        } else if (tabuleiro1.getTabuleiro()[posicao.charAt(0)-'0'][posicao.charAt(1)-'0'].isNavio()){
+            tabuleiro2.getTabuleiro()[posicao.charAt(0)-'0'][posicao.charAt(1)-'0'].setTiroCerteiro();
         }
-        return tabuleiro;
+        return tabuleiro1;
     }
     public static void main(String[] args) throws InterruptedException {
 
@@ -40,7 +40,7 @@ public class BatalhaNaval {
 //            posicao = escolherPosicaoAtaque(jogadasPessoa); // posição escolhida pelo jogador pessoa
             //atualiza o tabuleiro do PC com o ataque
             Thread.sleep(5000);
-            tabuleiroPC = atacar(tabuleiroHumano, jogada);
+            tabuleiroPC = atacar(tabuleiroPC, tabuleiroHumano, jogada);
 //
 //            mostrarTabuleiro(tabuleiroPessoa);
 //            posicao = escolherPosicaoAtaque(jogadasPC); // posição deve ser escolhida aleatoriamente pelo jogador PC
