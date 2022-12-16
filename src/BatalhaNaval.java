@@ -30,10 +30,10 @@ public class BatalhaNaval {
             display.imprimirTabuleiro(tabuleiroHumano);
 
             //jogador humano é quem começa escolhendo a posição de ataque
-            posicao = entrada.escolherPosicaoAtaque(jogadasHumano);
+            //posicao = entrada.escolherPosicaoAtaque(jogadasHumano);
 
             //para fazer PC vs PC, descomentar a linha de baixo e comentar a de cima
-            //posicao = entrada.gerarAleatoriamentePosicaoAtaque(jogadasHumano);
+            posicao = entrada.gerarAleatoriamentePosicaoAtaque(jogadasHumano);
 
             jogadasHumano.add(posicao);
 
@@ -59,15 +59,15 @@ public class BatalhaNaval {
                 break;
             }
         }
+        System.out.println("Tabuleiro Jogador Humano");
+        display.imprimirTabuleiro(tabuleiroHumano);
+        System.out.println("Tabuleiro PC");
+        display.imprimirTabuleiro(tabuleiroPC);
         if (ganhadorHumano){
             System.out.println("Jogador Humano Venceu!! :D");
         } else {
             System.out.println("Jogador PC Venceu.. :'(");
         }
-        System.out.println("Tabuleiro Jogador Humano");
-        display.imprimirTabuleiro(tabuleiroHumano);
-        System.out.println("Tabuleiro PC");
-        display.imprimirTabuleiro(tabuleiroPC);
         System.out.println("FIM DA BATALHA...");
     }
 }
