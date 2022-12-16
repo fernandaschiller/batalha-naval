@@ -15,7 +15,8 @@ public class Jogador {
 
         for(int i = 0; i < tabuleiro.TAMANHO_TABULEIRO; i++){
             for(int j = 0; j < tabuleiro.TAMANHO_TABULEIRO; j++){
-                contadorAcertos++;
+                if(tabuleiro.getTabuleiro()[i][j].isTiroCerteiro())
+                    contadorAcertos++;
             }
         }
 
