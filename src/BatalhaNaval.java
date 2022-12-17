@@ -1,54 +1,73 @@
-
+import tabuleiro.Jogador;
 import tabuleiro.Tabuleiro;
 import utils.Display;
 import utils.Input;
-
-import java.awt.*;
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class BatalhaNaval {
-    public static Tabuleiro atacar(Tabuleiro tabuleiro1, Tabuleiro tabuleiro2, String posicao) {
-        if(tabuleiro1.getTabuleiro()[posicao.charAt(0)-'0'][posicao.charAt(1)-'0'].isAgua()) {
-            tabuleiro2.getTabuleiro()[posicao.charAt(0)-'0'][posicao.charAt(1)-'0'].setTiroAgua();
-        } else if (tabuleiro1.getTabuleiro()[posicao.charAt(0)-'0'][posicao.charAt(1)-'0'].isNavio()){
-            tabuleiro2.getTabuleiro()[posicao.charAt(0)-'0'][posicao.charAt(1)-'0'].setTiroCerteiro();
-        }
-        return tabuleiro1;
-    }
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws Exception {
 
         Tabuleiro tabuleiroPC = new Tabuleiro();
         Tabuleiro tabuleiroHumano = new Tabuleiro();
-        //JogadorPC jogadorPC = new JogadorPC();
-        //JogadorHumano jogadorHumano = new JogadorHumano();
+        List<String> jogadasPC = new ArrayList();
+        List<String> jogadasHumano = new ArrayList();
+        Jogador jogadorPC = new Jogador();
+        Jogador jogadorHumano = new Jogador();
         Display display = new Display();
-
+        String posicao;
         Input entrada = new Input();
-        String jogada = "";
+        boolean ganhadorPC = false;
+        boolean ganhadorHumano = false;
 
         System.out.println("\n---------------------------------------------");
         System.out.println("|               " + "BATALHA NAVAL               |");
 
-        while (true){ // melhorar condição
+        while (!ganhadorHumano && !ganhadorPC){
             //falta mesclar os tabuleiros
-            display.imprimirTabuleiro(tabuleiroHumano);
-            //jogador humano começa
-            //escolherposicao
 
-            jogada = entrada.escolherPosicaoAtaque();
-            System.out.println("------>" + jogada);
-//            posicao = escolherPosicaoAtaque(jogadasPessoa); // posição escolhida pelo jogador pessoa
-            //atualiza o tabuleiro do PC com o ataque
-            Thread.sleep(5000);
-            tabuleiroPC = atacar(tabuleiroPC, tabuleiroHumano, jogada);
-//
-//            mostrarTabuleiro(tabuleiroPessoa);
-//            posicao = escolherPosicaoAtaque(jogadasPC); // posição deve ser escolhida aleatoriamente pelo jogador PC
-//            System.out.println(posicao);
-//            tabuleiroPessoa = atacar(tabuleiroPessoa, posicao);
+            //Mostrar o tabuleiro do jogador humano
+            display.imprimirTabuleiro(tabuleiroHumano);
+
+            //jogador humano é quem começa escolhendo a posição de ataque
+            posicao = entrada.escolherPosicaoAtaque(jogadasHumano);
+
+            //para fazer PC vs PC, descomentar a linha de baixo e comentar a de cima
+            //posicao = entrada.gerarAleatoriamentePosicaoAtaque(jogadasHumano);
+
+            jogadasHumano.add(posicao);
+
+            //ataque do humano no tabuleiro do PC
+            tabuleiroHumano = jogadorHumano.atacar(tabuleiroHumano, tabuleiroPC, posicao);
+
+            //verificar se o jogador humano é ganhador
+            ganhadorHumano = jogadorHumano.verificarGanhador(tabuleiroPC);
+            if (ganhadorHumano){
+                break;
+            }
+
+            //vez do PC jogar
+            posicao = entrada.gerarAleatoriamentePosicaoAtaque(jogadasPC);
+            jogadasPC.add(posicao);
+
+            //ataque do PC no tabuleiro do humano
+            tabuleiroPC = jogadorPC.atacar(tabuleiroPC, tabuleiroHumano, posicao);
+
+            //verificar se o jogador PC é ganhador
+            ganhadorPC = jogadorPC.verificarGanhador(tabuleiroHumano);
+            if (ganhadorPC){
+                break;
+            }
         }
+        System.out.println("Tabuleiro Jogador Humano");
+        display.imprimirTabuleiro(tabuleiroHumano);
+        System.out.println("Tabuleiro PC");
+        display.imprimirTabuleiro(tabuleiroPC);
+        if (ganhadorHumano){
+            System.out.println("Jogador Humano Venceu!! :D");
+        } else {
+            System.out.println("Jogador PC Venceu.. :'(");
+        }
+        System.out.println("FIM DA BATALHA...");
     }
 }
-
-// tabuleiro tem função armazenar navios, imprimir tabuleiro... - construir classe chamada tabuliero
-// objeto tabuleiro pra pessoa e objeto tabuleiro para o computador

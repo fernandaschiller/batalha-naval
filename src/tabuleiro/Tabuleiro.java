@@ -11,18 +11,6 @@ public class Tabuleiro {
     public Tabuleiro() {
         Random random = new Random();
 
-//        this.tabuleiro[0][0] = new Posicao(0, 0);
-//
-//        for (int j = 1; j < TAMANHO_TABULEIRO; j++) {
-//            this.tabuleiro[0][j] = new Posicao(0, j);    //" " + (j - 1) + " ";
-//            this.tabuleiro[0][j].setColuna();
-//        }
-//
-//        for (int i = 1; i < TAMANHO_TABULEIRO; i++) {
-//            this.tabuleiro[i][0] = new Posicao(i, 0);   //;
-//            this.tabuleiro[i][0].setLinha();
-//        }
-
         for (int i = 0; i < TAMANHO_TABULEIRO; i++) {
 
             int posicaoNavio = random.nextInt(0,TAMANHO_TABULEIRO);
