@@ -19,21 +19,22 @@ public class BatalhaNaval {
         Input entrada = new Input();
         boolean ganhadorPC = false;
         boolean ganhadorHumano = false;
+        int rodadas = 0;
 
         System.out.println("\n---------------------------------------------");
         System.out.println("|               " + "BATALHA NAVAL               |");
 
         while (!ganhadorHumano && !ganhadorPC){
-            //falta mesclar os tabuleiros
+            rodadas++;
 
             //Mostrar o tabuleiro do jogador humano
             display.imprimirTabuleiro(tabuleiroHumano);
 
             //jogador humano é quem começa escolhendo a posição de ataque
-            //posicao = entrada.escolherPosicaoAtaque(jogadasHumano);
+            posicao = entrada.escolherPosicaoAtaque(jogadasHumano);
 
             //para fazer PC vs PC, descomentar a linha de baixo e comentar a de cima
-            posicao = entrada.gerarAleatoriamentePosicaoAtaque(jogadasHumano);
+            //posicao = entrada.gerarAleatoriamentePosicaoAtaque(jogadasHumano);
 
             jogadasHumano.add(posicao);
 
@@ -68,6 +69,7 @@ public class BatalhaNaval {
         } else {
             System.out.println("Jogador PC Venceu.. :'(");
         }
+        System.out.println("Número de rodadas: " + rodadas);
         System.out.println("FIM DA BATALHA...");
     }
 }
