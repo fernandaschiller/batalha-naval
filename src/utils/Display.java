@@ -13,7 +13,7 @@ public class Display {
             System.out.print("| " + (Character.toString((char) 65 + i)) + " ");
             for (int j = 0; j < tabuleiro.TAMANHO_TABULEIRO; j++) {
                 System.out.print("|");
-                System.out.print(tabuleiro.getTabuleiro()[i][j]);
+                System.out.print(tabuleiro.getTabuleiro()[i][j].toString());
             }
             System.out.print("|\n");
             System.out.println("---------------------------------------------");
